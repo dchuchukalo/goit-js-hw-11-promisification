@@ -7,9 +7,11 @@ const makeTransaction = transaction => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const canProcess = Math.random() > 0.3;
-
+      // Скажите пожалуйста, насколько правильно такое решение?
+      // Я понял что resolve не может вернуть несколько значение через запятую.
+      // Решил сделать массив и уже его передавать в resolve.
       if (canProcess) {
-          const result = [transaction.id, delay]
+        const result = [transaction.id, delay];
         resolve(result);
       }
       reject(transaction.id);
@@ -17,7 +19,7 @@ const makeTransaction = transaction => {
   });
 };
 
-const logSuccess = (result) => {
+const logSuccess = result => {
   console.log(`Transaction ${result[0]} processed in ${result[1]}ms`);
 };
 
