@@ -11,16 +11,15 @@ const makeTransaction = transaction => {
       // Я понял что resolve не может вернуть несколько значение через запятую.
       // Решил сделать массив и уже его передавать в resolve.
       if (canProcess) {
-        const result = [transaction.id, delay];
-        resolve(result);
+        resolve(([transaction.id, delay]));
       }
       reject(transaction.id);
     }, delay);
   });
 };
 
-const logSuccess = result => {
-  console.log(`Transaction ${result[0]} processed in ${result[1]}ms`);
+const logSuccess = arr => {
+  console.log(`Transaction ${arr[0]} processed in ${arr[1]}ms`);
 };
 
 const logError = id => {
